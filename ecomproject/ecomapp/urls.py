@@ -15,5 +15,19 @@ urlpatterns = [
     path("empty-cart/",EmptyCartView.as_view(), name="emptycart"),
     path("checkout/",CheckoutView.as_view(),name="checkout"),
 
-    path("register/",CustomerRegistration.as_view(),name="customerregistration"),
+    path("register/",
+         CustomerRegistrationView.as_view(), name="customerregistration"),
+    path("logout/", CustomerLogoutView.as_view(), name="customerlogout"),     
+    path("login/", CustomerLoginView.as_view(), name="customerlogin"),  
+    path("profile/",CustomerProfileView.as_view(),name="customerprofile"),
+    path("profile/order-<int:pk>/", CustomerOrderDetailView.as_view(),
+         name="customerorderdetail"),
+    path("admin-login/", AdminLoginView.as_view(), name="adminlogin"),     
+    path("admin-home/", AdminHomeView.as_view(), name="adminhome"),
+    path("admin-order/<int:pk>/", AdminOrderDetailView.as_view(),
+         name="adminorderdetail"),
+
+    path("admin-all-orders/", AdminOrderListView.as_view(), name="adminorderlist"),
+
+
 ]
