@@ -1,6 +1,9 @@
 {%extends 'base.html'%}
 {%block title%}My cart{%endblock%}
 {%block content%}
+<body>
+    
+
 <div class="container">
     <div class="col-md-8">
         <h4>Items in my cart</h4><hr>
@@ -49,4 +52,47 @@
 
     </div>
 </div>
+</body>
+<style>
+    body{
+        background-color: #e5eddf;
+    }
+    /* Add some styling to the table */
+.table {
+  width: 150%;
+  border-collapse: collapse;
+}
+
+.table th, .table td {
+  border: 1px solid black;
+  padding: 10px;
+  text-align: left;
+}
+
+.table th {
+  background-color: #ddd8ce;
+  color: black;
+}
+
+.table td {
+  vertical-align: middle;
+}
+
+/* Add some styling to the buttons */
+.btn {
+  margin: 5px;
+}
+
+/* Add some styling to the total row */
+th.text-right {
+  text-align: right;
+}
+
+/* Add some styling to the checkout button */
+.btn-info {
+  width: 100%;
+  font-size: 18px;
+  padding: 10px;
+}
+</style>
 {%endblock%}

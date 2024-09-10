@@ -2,6 +2,9 @@
 {% block title %}My Profile{% endblock %}
 
 {% block content %}
+<body>
+    
+
 <div class="container">
     <div class="row">
         <div class="col-md-4">
@@ -28,8 +31,8 @@
                     {%for ord in orders%}
                     <tr>
                         <td>{{forloop.counter}}</td>
-                        <td><a href="{%url 'ecomapp:customerorderdetail' ord.pk%}">{{ord.id}}</a></td>
-                        <td>{{ord.total}}</td>
+                        <td><a href="{%url 'ecomapp:customerorderdetail' ord.pk%}">Order No. {{ord.id}}</a></td>
+                        <td>Rs.{{ord.total}}</td>
                         <td>{{ord.created_at}}</td>
                         <td>{{ord.order_status}}</td>
                     </tr>
@@ -40,4 +43,69 @@
         </div>
     </div>
 </div>
+</body>
+<style>
+    body{
+        background-color: #e5eddf;
+    }
+    /* Container and Row Structure */
+.container {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+/* Customer Detail Information */
+.col-md-4 {
+  background-color: #fff;
+  padding: 20px;
+  border: 1px solid #ddd;
+  margin-bottom: 20px;
+}
+
+.font-weight-bold {
+  font-weight: bold;
+}
+
+/* Previous Orders Table */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th, .table td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: left;
+}
+
+.table th {
+  background-color: #f0f0f0;
+}
+
+.table td a {
+  text-decoration: none;
+  color: #337ab7;
+}
+
+.table td a:hover {
+  color: #23527c;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .col-md-4, .col-md-8 {
+    width: 100%;
+  }
+}
+</style>
 {% endblock %}

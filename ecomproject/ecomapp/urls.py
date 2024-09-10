@@ -28,6 +28,7 @@ urlpatterns = [
          name="adminorderdetail"),
 
     path("admin-all-orders/", AdminOrderListView.as_view(), name="adminorderlist"),
+    path("search/", SearchView.as_view(), name="search"),
 
 
 ]

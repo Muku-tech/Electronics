@@ -2,6 +2,8 @@ from django.views.generic import View,TemplateView, CreateView,FormView,DetailVi
 from django.contrib.auth import authenticate, login, logout
 from .forms import CheckoutForm,CustomerRegistrationForm, CustomerLoginForm
 from django.shortcuts import render,redirect
+from django.core.paginator import Paginator
+from django.db.models import Q
 from django.urls import reverse_lazy
 from .models import *
 
@@ -19,11 +21,19 @@ class EcomMixin(object):
 # Create your views here.
 class HomeView(EcomMixin,TemplateView):
     template_name="home.html"
+    
+    
     def get_context_data(self, **kwargs):
-          context =super().get_context_data(**kwargs)
-          context['myname']="Mukunda Mahat"
-          context['product_list']=Product.objects.all().order_by("-id")
-          return context
+        context = super().get_context_data(**kwargs)
+        context['myname'] = "Dipak Niroula"
+        all_products = Product.objects.all().order_by("-id")
+        paginator = Paginator(all_products, 8)
+        page_number = self.request.GET.get('page')
+        print(page_number)
+        product_list = paginator.get_page(page_number)
+        context['product_list'] = product_list
+        return context
+
 class AllProductView(EcomMixin,TemplateView):
       template_name="allproducts.html"
       def get_context_data(self, **kwargs):
@@ -268,6 +278,20 @@ class CustomerOrderDetailView(DetailView):
         else:
             return redirect("/login/?next=/profile/")
         return super().dispatch(request, *args, **kwargs)
+    
+
+class SearchView(TemplateView):
+    template_name = "search.html"
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        kw = self.request.GET.get("keyword")
+        results = Product.objects.filter(
+            Q(title__icontains=kw))
+        print(results)
+        context["results"] = results
+        return context
+
+
 
 
 class AdminLoginView(FormView):

@@ -1,6 +1,9 @@
 {%extends 'base.html'%}
 {%block title%}Checkout{%endblock%}
 {%block content%}
+<body>
+    
+
 <div class="container">
     <div class="row">
         <div class="col-md-6">
@@ -45,4 +48,73 @@
     </div>
 
 </div>
+</body>
+<style>
+    body{
+        background-color: #e5eddf;
+    }
+
+    body {
+  background-color: #e5eddf;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.col-md-6 {
+  background-color: #fff;
+  padding: 30px;
+  border: 1px solid #ddd;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: left;
+}
+
+th {
+  background-color: #f0f0f0;
+}
+
+.text-right {
+  text-align: right;
+}
+
+form {
+  margin-top: 20px;
+}
+
+label {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+input[type="text"], input[type="email"], input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+</style>
 {%endblock%}

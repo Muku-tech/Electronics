@@ -1,16 +1,19 @@
 {%extends 'base.html'%}
 {%block title%}All Products {%endblock%} 
 {%block content%}
-<Div class=""container>
-    <h1>All Products</h1><hr>
+<body>
+  
+
+<div class=""container>
+    <h1>All Products:</h1><hr>
     {%for cat in allcategories%}
-    <h2>{{cat.title}}</h2><hr>
+    <h4>{{cat.title}}:</h4><hr>
     <div class="row">
         {%for p in cat.product_set.all%}
      <div class="col-md-3">
         <div class="m-4">
       <h2><a href="{%url 'ecomapp:productdetail' p.slug%}">{{p.title}}</a></h2>
-      <img src="{{p.image.url}}" alt="" class="img-fluid" style="height:2500; object-fit:cover;">
+      <img src="{{p.image.url}}" alt="" class="img-fluid" style="height:200px; object-fit:cover;">
       <p class="mt-3">Price:<strike>Rs.{{p.marked_price}}</strike>Rs. {{p.selling_price}}</p>
       <a href="{%url 'ecomapp:addtocart' p.id%}" class="btn btn-primary">Add To Cart</a>
     </div>
@@ -18,5 +21,88 @@
     {%endfor%}
     </div>
     {%endfor%}
-</Div>
+</div>
+</body>
+<style>
+body{
+  background-color: #e5eddf;
+}
+  .container {
+  max-width: 1000px; /* adjust the container width to your liking */
+  margin: 40px auto; /* add some margin to the container */
+  padding: 20px; /* add some padding to the container */
+}
+
+h1 {
+  text-align: center;
+  font-weight: bold; /* make the h1 font bold */
+  margin-bottom: 10px; /* add some margin below the h1 */
+}
+
+h4 {
+  font-size: 30px;
+  padding-left: 200px;
+  color: #e55b1c;
+  font-weight: bold; /* make the h2 font bold */
+  margin-bottom: 10px; /* add some margin below the h2 */
+}
+
+.row {
+  display: flex; /* make the row a flex container */
+  flex-wrap: wrap; /* allow the row to wrap to the next line */
+  justify-content: center; /* center the row */
+}
+
+.col-md-3 {
+  margin: 10px; /* add some margin to the column */
+}
+
+.m-4 {
+  /* margin: 4px;  */
+  padding: 10px;
+  width: 200px;/* add some margin to the inner div */
+}
+
+h2 a {
+  text-decoration: none; /* remove the underline from the link */
+  color: #337ab7; /* blue color */
+}
+
+h2 a:hover {
+  color: #23527c; /* darker blue color on hover */
+}
+
+.img-fluid {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 10px;
+  transition: 0.5s ease;
+}
+.img-fluid:hover{
+-webkit-transform: scale(1.1);
+-ms-transform: scale(1.1);
+transform: scale(1.1);
+transition: 0.5s ease;
+}
+
+/* Add some styling to the price and button */
+p.mt-3 {
+  font-size: 18px; /* adjust the font size of the price */
+  font-weight: bold; /* make the price font bold */
+}
+
+.btn.btn-primary {
+  background-color: #337ab7; /* blue color for the button */
+  color: #ffffff; /* white text color for the button */
+  padding: 10px 20px; /* add some padding to the button */
+  border: none; /* remove the border from the button */
+  border-radius: 5px; /* add some border radius to the button */
+}
+
+.btn.btn-primary:hover {
+  background-color: #23527c; /* darker blue color on hover */
+  color: #ffffff; /* white text color on hover */
+}
+</style>
 {%endblock%}

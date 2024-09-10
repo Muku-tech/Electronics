@@ -4,6 +4,9 @@
 {% block title %}Order Detail {% endblock %}
 
 {% block content %}
+<body>
+    
+
 <div class="container">
     <div class="row">
         <div class="col-md-8 mx-auto">
@@ -43,5 +46,104 @@
         </div>
     </div>
 </div>
+</body>
+<style>
+    body{
+        background-color: #e5eddf;
+    }
+    /* Global Styles */
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f9f9f9; /* changed to a lighter background color */
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: #fff; /* changed to a white background color */
+  border: 1px solid #ddd;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px; /* added border radius */
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.col-md-8 {
+  background-color: #fff;
+  padding: 30px;
+  border: 1px solid #ddd;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid #ddd; /* added border */
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: left;
+}
+
+th {
+  background-color: #f0f0f0;
+}
+
+.text-right {
+  text-align: right;
+}
+
+h3 {
+  margin-top: 0;
+  font-weight: bold; /* added font weight */
+}
+
+hr {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border: 0;
+  border-top: 1px solid #ccc;
+}
+
+.font-weight-bold {
+  font-weight: bold;
+}
+
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+a {
+  text-decoration: none;
+  color: #337ab7;
+}
+
+a:hover {
+  color: #23527c;
+  text-decoration: underline;
+}
+
+/* Added some new styles */
+
+.table th, .table td {
+  vertical-align: middle; /* added vertical align */
+}
+
+.table th {
+  text-align: center; /* added text align */
+</style>
 
 {% endblock %}
