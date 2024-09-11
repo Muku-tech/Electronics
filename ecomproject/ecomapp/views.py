@@ -90,9 +90,6 @@ class AddToCartView(EcomMixin,TemplateView):
                         cart=cart_obj, product=product_obj, rate=product_obj.selling_price, quantity=1, subtotal=product_obj.selling_price)          
                cart_obj.total+=product_obj.selling_price
                cart_obj.save()
-
-            #checks if cart product already exists in cart.
-
             return context
       
 class ManageCartView(EcomMixin,View):
