@@ -34,13 +34,14 @@
         <form action="" method="post">
           {% csrf_token %}
           {{form.as_p}}
+          <div class="inputBox"> 
+            <input type="submit" value="Sign Up"> 
+           </div>
       </form>
       </div> 
-      <div class="inputBox"> 
-      </div> 
-      <div class="inputBox"> 
-       <input type="submit" value="Sign Up"> 
-      </div> 
+      <!-- <div class="inputBox"> 
+      </div>  -->
+     
       <div class="links">
         <p>Already have an account?<hr><hr><hr><hr><hr><hr><a href="{%url 'ecomapp:customerlogin'%}">Login</a> </p>
       </div> 
@@ -145,7 +146,7 @@ body
 section 
 {
   position: absolute;
-  width: 100vw;
+  width: 98vw;
   height: 180vh;
   display: flex;
   justify-content: center;
