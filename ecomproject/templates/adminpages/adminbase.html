@@ -1,42 +1,81 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Admin panel for e-commerce application">
+    <meta name="keywords" content="e-commerce, admin, orders, management">
     <title>{% block title %}{% endblock %}</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            padding-top: 20px;
+        }
+        .container a {
+            margin-right: 15px;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
         <a href="{% url 'ecomapp:adminhome' %}">Home</a> | 
         <a href="{% url 'ecomapp:adminorderlist' %}">All Orders</a> | 
-
         <a href="{% url 'ecomapp:home' %}" target="_blank">Visit site</a>
     </div>
     {% block content %}
-
     {% endblock %}
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
+</html>
 <style>
-    .container {
-  background-color: #f0f0f0; /* light gray background */
-  padding: 10px; /* add some padding to the container */
-  border-bottom: 1px solid #ccc; /* add a bottom border */
+  /* General Body Styles */
+body {
+    background-color: #f8f9fa; /* Light grey background */
+    font-family: Arial, sans-serif; /* Clean font */
+    color: #343a40; /* Dark grey text color */
 }
 
+/* Container Styling */
+.container {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #ffffff; /* White background for the content */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+/* Link Styles */
 .container a {
-  text-decoration: none; /* remove underline from links */
-  color: #337ab7; /* blue color for links */
-  margin-right: 20px; /* add some space between links */
-  transition: color 0.2s ease; /* add a transition effect on hover */
+    text-decoration: none; /* Remove underline from links */
+    color: #007bff; /* Bootstrap primary color */
+    font-weight: bold;
 }
 
 .container a:hover {
-  color: #23527c; /* darker blue on hover */
+    text-decoration: underline; /* Underline on hover for better user experience */
+    color: #0056b3; /* Darker shade of blue for hover effect */
+}
+
+/* Navigation Links Styling */
+.container a {
+    margin-right: 15px;
 }
 
 .container a:last-child {
-  margin-right: 0; /* remove margin from the last link */
+    margin-right: 0;
 }
+
+/* Content Block Styling */
+.block-content {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #ffffff; /* White background for content */
+    border: 1px solid #dee2e6; /* Light border around the content */
+    border-radius: 8px; /* Rounded corners */
+}
+
 </style>
-</html>

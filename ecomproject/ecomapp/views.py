@@ -7,7 +7,6 @@ from django.db.models import Q
 from django.urls import reverse_lazy
 from .models import *
 
-
 class EcomMixin(object):
     def dispatch(self, request, *args, **kwargs):
         cart_id = request.session.get("cart_id")
@@ -57,6 +56,14 @@ class ProductDetailView(EcomMixin,TemplateView):
 
 class AddToCartView(EcomMixin,TemplateView):
       template_name="addtocart.html" 
+
+      def dispatch(self, request, *args, **kwargs):
+        if request.user.is_authenticated and request.user.customer:
+            pass
+        else:
+            return redirect("/login/?next=/checkout/")
+        return super().dispatch(request, *args, **kwargs)
+
       def get_context_data(self, **kwargs):
             context = super().get_context_data(**kwargs)
             #get product id from requested url
@@ -90,7 +97,7 @@ class AddToCartView(EcomMixin,TemplateView):
                         cart=cart_obj, product=product_obj, rate=product_obj.selling_price, quantity=1, subtotal=product_obj.selling_price)          
                cart_obj.total+=product_obj.selling_price
                cart_obj.save()
-            return context
+               return context
       
 class ManageCartView(EcomMixin,View):
      def get(self,request,*args,**kwargs):
@@ -329,13 +336,22 @@ class AdminOrderDetailView(AdminRequiredMixin,DetailView):
      model = Order
      context_object_name = "ord_obj"
 
+     def get_context_data(self,**kwargs):
+         context=super().get_context_data(**kwargs)
+         context["allststus"]
+         return context
+
 
 class AdminOrderListView(AdminRequiredMixin, ListView):
     template_name = "adminpages/adminorderlist.html"
     queryset = Order.objects.all().order_by("-id")
     context_object_name = "allorders"
 
+class AdminOrderStatusChangeView(AdminRequiredMixin,View):
+    def post(self,request,*args,**kwargs):
+        order_id=self.kwargs["pk"]
+        order_obj=Order.objects.get(id=order_id)
 
-
+        return redirect(reverse_lazy("ecomapp:adminorderdetail",kwargs={"pk":order_id}))
 
 

@@ -1,20 +1,165 @@
-{%extends 'base.html'%}
-{%block title%}Add to cart{%endblock%}
-{%block content%}
+{% extends 'base.html' %}
+
+{% block title %}Add to Cart{% endblock %}
+
+{% block content %}
+<body>
+  
 
 <div class="container">
-    <h3>Product added to cart successfully</h3>
+    <div class="alert alert-success mt-4" role="alert">
+        <div class="alert-content">
+            <div class="alert-icon">
+                <i class="bi bi-check-circle"></i>
+            </div>
+            <h3 class="mb-3">Product Added to Cart Successfully!</h3>
+            <p>Your item has been successfully added to your cart. You can continue shopping or proceed to checkout.</p>
+            <div class="button-group mt-4">
+                <a href="{% url 'ecomapp:all products' %}" class="btn btn-primary">
+                    <i class="bi bi-arrow-left-circle"></i> Continue Shopping
+                </a>
+                <a href="{% url 'ecomapp:mycart' %}" class="btn btn-secondary">
+                    <i class="bi bi-cart-check"></i> View Cart
+                </a>
+            </div>
+        </div>
+    </div>
 </div>
+</body>
 <style>
-    /* Add some styling to the container div */
-.container {
-  text-align: center;
-  padding: 20px;
-}
+  body{
+    background-color: #131313;
+  }
+    /* Container styling for center-aligned text and padding */
+    .container {
+        text-align: center;
+        padding: 30px;
+    }
 
-/* Add some styling to the h3 heading */
-h3 {
-  color: #337ab7;
-}
+    /* Alert box styling */
+    .alert {
+        border-radius: 8px;
+        padding: 20px;
+        background-color: #d4edda;
+        color: #155724;
+        border: 1px solid #c3e6cb;
+        margin-bottom: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        animation: fadeIn 0.5s ease-in-out;
+    }
+
+    /* Fade-in animation for alert box */
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+
+    /* Alert icon styling */
+    .alert-icon {
+        font-size: 2.5rem;
+        color: #155724;
+        margin-bottom: 15px;
+        animation: bounce 1s infinite;
+    }
+
+    /* Bounce animation for alert icon */
+    @keyframes bounce {
+        0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+        40% { transform: translateY(-30px); }
+        60% { transform: translateY(-15px); }
+    }
+
+    /* Product info styling */
+    .product-info {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 15px;
+        margin-bottom: 20px;
+    }
+
+    .product-info img {
+        width: 150px;
+        height: 150px;
+        object-fit: cover;
+    }
+
+    .product-details {
+        text-align: left;
+    }
+
+    /* Recommended products styling */
+    .recommended-products {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+        justify-content: center;
+    }
+
+    .recommended-item {
+        text-align: center;
+        flex: 1 1 calc(25% - 30px);
+        margin: 15px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        overflow: hidden;
+    }
+
+    .recommended-item img {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+    }
+
+    .recommended-details {
+        padding: 10px;
+    }
+
+    /* Heading styling */
+    h3, h4 {
+        color: #155724;
+        font-weight: bold;
+    }
+
+    /* Button group styling */
+    .button-group {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        margin-top: 20px;
+    }
+
+    /* Button styling */
+    .btn-primary, .btn-secondary {
+        text-transform: uppercase;
+        font-weight: bold;
+        border-radius: 5px;
+        padding: 10px 20px;
+        transition: background-color 0.3s, border-color 0.3s;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        border-color: #007bff;
+        color: #fff;
+    }
+
+    .btn-primary:hover {
+        background-color: #0056b3;
+        border-color: #004085;
+    }
+
+    .btn-secondary {
+        background-color: #6c757d;
+        border-color: #6c757d;
+        color: #fff;
+    }
+
+    .btn-secondary:hover {
+        background-color: #5a6268;
+        border-color: #4e555b;
+    }
 </style>
-{%endblock%}
+{% endblock %}

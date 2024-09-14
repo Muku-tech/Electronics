@@ -44,7 +44,122 @@
                     </tr>
                 </tbody>
             </table>
+            <!-- <form action="{%url 'ecomapp:adminorderstatuschange' ord_obj.id%}" method="post">
+                {% csrf_token %}
+                <select name="status">
+                    {%for i,j in allstatus%}
+                    <option value="{{i}}">{{j}}</option>
+
+                    {%endfor%}
+                </select>
+
+            </form> -->
         </div>
     </div>
 </div>
 {% endblock %}
+<style>
+    /* General Body Styles */
+body {
+    background-color: #f4f7f6; /* Light grey background for the entire page */
+    color: #333; /* Dark grey text for readability */
+    font-family: Arial, sans-serif; /* Clean and modern font */
+}
+
+/* Container Styling */
+.container {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #ffffff; /* White background for content area */
+    border-radius: 8px; /* Rounded corners for the container */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+/* Heading Styles */
+h3 {
+    color: #007bff; /* Blue color for headings */
+    font-size: 1.75rem; /* Larger font size for headings */
+}
+
+h4 {
+    color: #333; /* Dark grey color for sub-headings */
+    font-size: 1.5rem; /* Slightly larger font size for sub-headings */
+    margin-top: 20px;
+}
+
+/* Horizontal Rule Styling */
+hr {
+    border: 0;
+    height: 1px;
+    background: #dee2e6; /* Light grey color for the horizontal line */
+    margin: 20px 0; /* Space above and below the line */
+}
+
+/* Paragraph Styling */
+p {
+    margin-bottom: 15px; /* Space below each paragraph */
+    font-size: 1rem; /* Font size for paragraphs */
+}
+
+/* Font Weight for Labels */
+.font-weight-bold {
+    font-weight: bold; /* Bold text for labels */
+    color: #495057; /* Darker grey for labels */
+}
+
+/* Table Styling */
+.table {
+    width: 100%; /* Full width of the container */
+    border-collapse: collapse; /* Collapsed borders for the table */
+    margin-top: 20px; /* Space above the table */
+}
+
+.table th, .table td {
+    padding: 12px; /* Padding inside table cells */
+    text-align: left; /* Align text to the left */
+    border-bottom: 1px solid #dee2e6; /* Light border between rows */
+}
+
+.table th {
+    background-color: #f8f9fa; /* Light grey background for table headers */
+    color: #495057; /* Dark grey text for table headers */
+    font-weight: bold; /* Bold text for table headers */
+}
+
+.table tr:nth-child(even) {
+    background-color: #f2f2f2; /* Light grey background for even rows */
+}
+
+.table tr:hover {
+    background-color: #e9ecef; /* Slightly darker grey on hover */
+}
+
+/* Link Styling in Table */
+.table a {
+    color: #007bff; /* Blue color for links */
+    text-decoration: none; /* Remove underline from links */
+}
+
+.table a:hover {
+    text-decoration: underline; /* Underline on hover */
+    color: #0056b3; /* Darker blue on hover */
+}
+
+/* Form Styling (if uncommented) */
+form {
+    margin-top: 20px; /* Space above the form */
+}
+
+select {
+    padding: 10px;
+    border: 1px solid #ced4da; /* Border color for the select element */
+    border-radius: 4px; /* Rounded corners for the select element */
+    font-size: 1rem; /* Font size for the select element */
+    background-color: #ffffff; /* White background for select */
+}
+
+option {
+    padding: 10px; /* Padding inside options */
+}
+
+</style>
