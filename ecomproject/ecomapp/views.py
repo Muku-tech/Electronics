@@ -27,7 +27,7 @@ class HomeView(EcomMixin,TemplateView):
         context = super().get_context_data(**kwargs)
         context['myname'] = "Dipak Niroula"
         all_products = Product.objects.all().order_by("-id")
-        paginator = Paginator(all_products, 8)
+        paginator = Paginator(all_products, 12)
         page_number = self.request.GET.get('page')
         print(page_number)
         product_list = paginator.get_page(page_number)

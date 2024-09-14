@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -26,16 +27,21 @@
             <li class="nav-item">
                 <a class="nav-link" href="{% url 'ecomapp:all products' %}">Categories</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item active">
+              <a class="nav-link" href="{%url 'ecomapp:mycart'%}">Cart
+              <span class="badge bg-danger">4</span>
+              <span class="sr-only">(current)</span></a>
+           </li>
+            <!-- <li class="nav-item">
                 <a class="nav-link" href="{% url 'ecomapp:mycart' %}"></i>Cart</a>
-            </li>
+            </li> -->
             <li class="nav-item">
               <a class="nav-link" href="{% url 'ecomapp:about' %}">About</a>
           </li>
           
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  {{request.user.username}}
+                  <i class="fa fa-fw fa-user"></i> {{request.user.username}}
                 </a>
               
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
