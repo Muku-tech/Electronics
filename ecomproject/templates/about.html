@@ -2,6 +2,8 @@
 {%block titl%}About Us{%endblock%}
 {%block content%}
 
+  
+
 {%load static%}
     <!-- <h1>Our Store is a multi-brand B2C ecommerce for all your technological needs dealing with all electronic gadgets/appliances/accessories in Nepal. With over 30 different international brands in our arsenal, including Dell, HP, Sennheiser, Haier, Rapoo Samsung, Logitech, Belkin, we aim to fulfill each and every need of electronic gadgets in Nepal. Neo Store is powered by Neoteric Nepal Private Ltd.
 
@@ -9,22 +11,15 @@
         
         Online Payment:
         Checkout easily with your Master/Visa and from anywhere. Our store has a secured online payment method serving our customer base.</h1> -->
+        <body>
         <section class="about-us">
-          <div class="heading">About Us</div>
-            <div class="con1">
-              <div class="image-side1"><img src="{%static 'Group.jpg'%}" class="image1"></div>
-              <div class="text1">
-                <h1><b>Meet Our Team</b><h1>
-                  <div class="textcon"><p>Our team is comprised of highly skilled and experienced professionals who are passionate about delivering exceptional.We are proud to present our team of dedicated professionals who work hard to achieve our mission and vision. Our team members come from diverse backgrounds and bring unique skills and experiences to the table. With their passion, creativity, and expertise, we deliver exceptional results to our clients and customers.</p></div>
-                </div></div>
-                <div class="con2">  
-                <div class="text2">
-                    <h1><b>Product On Sale</b><h1>
-                      <div class="textcon"><p>No matter what product or value-added service we sell, our mission is to be the best. Before each product is launched, we will conduct rigorous evaluation and detailed market research on product-related services to ensure that everything we sells can be in a leading position in the industry.</p>
-                      </div></div>
-                      
-                      <div class="image-side2">
-                  <img src="{%static 'onsale.webp'%}" class="image3"></div>
+            <div id="1" class="about">
+              <img src="{%static 'Group.jpg'%}" class="image">
+              <div class="text">
+                <h2>About Us</h2>
+                <h5>Front-end Developer & <span>Designer</span></h5>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Expedita natus ad sed harum itaque ullam enim quas, veniam accusantium, quia animi id eos adipisci iusto molestias asperiores explicabo cum vero atque amet corporis! Soluta illum facere consequuntur magni. Ullam dolorem repudiandae cumque voluptate consequatur consectetur, eos provident necessitatibus reiciendis corrupti!</p>
+              </div>
             </div>
             <div class="conatiner">
               <div class="row1">
@@ -33,7 +28,7 @@
             <div class="banner">
               <img src="{%static 'banner.png'%}" class="image2"></div>
           </section>
-
+        </body>
        <style>
         {% comment %} * {
   margin: 0;
@@ -44,7 +39,7 @@
 .about-us {
   display: flex;
   align-items: center;
-  height: 84vh;
+  height: 125vh;
   width: 100%;
   padding: 90px 0;
   background: #131313;
@@ -63,17 +58,18 @@
   justify-content: space-around;
 }
 .text {
-  width: 540px;
+  width: 700px;
 }
 .text h2 {
   color: #333;
   font-size: 90px;
   font-weight: 600;
   margin-bottom: 10px;
+  padding-left: 150px;
 }
 .text h5 {
   color: #333;
-  font-size: 22px;
+  font-size: 30px;
   font-weight: 500;
   margin-bottom: 20px;
 }
@@ -85,6 +81,7 @@ span {
   font-size: 18px;
   line-height: 25px;
   letter-spacing: 1px;
+  word-break: break-all;
 }
 .data {
   margin-top: 30px;
@@ -103,79 +100,7 @@ span {
   background: #000;
 }
 body{
-  
-} {% endcomment %}
-
-.con1{
-  display: flex;
-  justify-content: space-between;
-  gap: 50px;
+  background-color: #131313;
 }
-.con2{
-  margin-top: 150px;
-  display: flex;
-  justify-content: space-between;
-  gap:30px;
-}
-
-.image-side1{
-  height: 350px;
-  width: 550px;
-  border-radius: 15px;
-  margin-left: 200px;
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
-  float:left;
-  display:flex;
-  flex: 1;
-  text-align: center;
-}
-
-.image-side2 {
-  height: 350px;
-  width: 800px;
-  border-radius: 15px;
-  margin-right: 200px;
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
-  float:right;
-  display:flex;
-  flex:1;
-}
-
-.image2{
-  height: 60px;
-  width:100%;
-  padding;10px;
-}
-body{
-  background: #131313;
-  font-family: 'Quicksand', sans-serif;
-
-}
-.text1{
-  color: #FFFFFF;
-  text-align: right;
-  margin-right: 200px;
-}
-.text2{
-  color: #FFFFFF;
-  text-align: left;
-  margin-left: 200px;
-}
-.textcon{
-  font-size: 20px;
-}
-.heading{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color:#ffffff;
-  font-size: 70px;
-  padding-bottom: 50px;
-}
-
-.banner{
-  margin-top: 150px;
-}
-
        </style>   
 {%endblock%}
