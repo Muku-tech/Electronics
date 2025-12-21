@@ -14,6 +14,8 @@ urlpatterns = [
     path("manage_cart/<int:cp_id>",ManageCartView.as_view(),name="managecart"),
     path("empty-cart/",EmptyCartView.as_view(), name="emptycart"),
     path("checkout/",CheckoutView.as_view(),name="checkout"),
+    path("khalti-request/",KhaltiRequestView.as_view(),name="khaltirequest"),
+    path("khalti-verify/", KhaltiVerifyView.as_view(), name="khaltiverify"),
 
     path("register/",
          CustomerRegistrationView.as_view(), name="customerregistration"),

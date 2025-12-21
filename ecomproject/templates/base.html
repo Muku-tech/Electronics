@@ -1,117 +1,173 @@
-
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{% block title %}{% endblock %}</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-</head>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+  </head>
 
-<body>
-  {%load static%}
+  <body>
+    {% load static %}
     <nav class="navbar navbar-expand-lg navbar-light">
-        <!-- <a class="navbar-brand" href="{% url 'ecomapp:customerprofile' %}">{{request.user.username}}</a> -->
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-              
-            <li class="nav-item active">
-                <a class="nav-link" href="{% url 'ecomapp:home' %}"><i class="fa fa-fw fa-home"></i>Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'ecomapp:all products' %}">Categories</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'ecomapp:mycart' %}"></i>Cart</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'ecomapp:about' %}">About</a>
+      <!-- <a class="navbar-brand" href="{% url 'ecomapp:customerprofile' %}">{{request.user.username}}</a> -->
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="{% url 'ecomapp:home' %}"
+              ><i class="fa fa-fw fa-home"></i>GadgetGrid
+              <span class="sr-only">(current)</span></a
+            >
           </li>
-          
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <i class="fa fa-fw fa-user"></i> {{request.user.username}}
-                </a>
-              
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  {% if request.user.customer %}
-                <a class="dropdown-item" href="{% url 'ecomapp:customerprofile' %}">My Profile</a>
-                <a class="dropdown-item" href="{% url 'ecomapp:customerlogout' %}">Logout</a>
-                {% else %}
-                <a class="dropdown-item" href="{% url 'ecomapp:customerregistration' %}">Register</a>
-                <a class="dropdown-item" href="{% url 'ecomapp:customerlogin' %}">Login</a>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'ecomapp:all products' %}"
+              >Categories</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'ecomapp:mycart' %}"
+              ><i class="fa fa-shopping-cart"></i>Cart</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'ecomapp:about' %}">About</a>
+          </li>
 
-                {% endif %}
-                </div>
-            </li>
-            </ul>
-            <form class="form-inline my-2 my-lg-0" action="{% url 'ecomapp:search' %}" method="GET">
-            <input name="keyword" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" required>
-            <button class="btn my-2 my-sm-0" type="submit" style="background-color: orange;">Search</button>
-            </form>
-            
-        </div>
-        </nav>
-    <hr>
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              id="navbarDropdown"
+              role="button"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              <i class="fa fa-fw fa-user"></i> {{request.user.username}}
+            </a>
 
-   
-    {% block content %}
-    {% endblock %}
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              {% if request.user.customer %}
+              <a
+                class="dropdown-item"
+                href="{% url 'ecomapp:customerprofile' %}"
+                >My Profile</a
+              >
+              <a class="dropdown-item" href="{% url 'ecomapp:customerlogout' %}"
+                >Logout</a
+              >
+              {% else %}
+              <a
+                class="dropdown-item"
+                href="{% url 'ecomapp:customerregistration' %}"
+                >Register</a
+              >
+              <a class="dropdown-item" href="{% url 'ecomapp:customerlogin' %}"
+                >Login</a
+              >
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+              {% endif %}
+            </div>
+          </li>
+        </ul>
+        <form
+          class="form-inline my-2 my-lg-0"
+          action="{% url 'ecomapp:search' %}"
+          method="GET"
+        >
+          <input
+            name="keyword"
+            class="form-control mr-sm-2"
+            type="search"
+            placeholder="Search"
+            aria-label="Search"
+            required
+          />
+          <button
+            class="btn my-2 my-sm-0"
+            type="submit"
+            style="background-color: orange"
+          >
+            Search
+          </button>
+        </form>
+      </div>
+    </nav>
+    <hr />
 
+    {% block content %} {% endblock %}
 
-
-
-
-
-
-</body>
-
-
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+      integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+      integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+      crossorigin="anonymous"
+    ></script>
+  </body>
 </html>
 
-
 <style>
-  .logo{
+  .logo {
     height: 100px;
     width: 100px;
   }
 
-  .navbar{
+  .navbar {
     position: fixed;
     top: 0;
     width: 100%;
     z-index: 1000;
-    background-color:black;
+    background-color: black;
   }
 
-
-body{
-  padding-top: 60px;
-}
-.navbar-light .navbar-nav .active>.nav-link, .navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .show>.nav-link {
-    color: slategrey;
-}
-.navbar-light .navbar-nav .nav-link {
+  body {
+    padding-top: 60px;
+  }
+  .navbar-light .navbar-nav .active > .nav-link,
+  .navbar-light .navbar-nav .nav-link.active,
+  .navbar-light .navbar-nav .nav-link.show,
+  .navbar-light .navbar-nav .show > .nav-link {
+    color: orange;
+  }
+  .navbar-light .navbar-nav .nav-link {
     color: antiquewhite;
-}
-.navbar-light .navbar-nav .nav-link:hover {
-   color: chartreuse;
-}
-.navbar-expand-lg .navbar-nav .dropdown-menu {
-        position: absolute;
-        background-color: #f90;
-    }
-    .dropdown-item {
+  }
+  .navbar-light .navbar-nav .nav-link:hover {
+    color: chartreuse;
+  }
+  .navbar-expand-lg .navbar-nav .dropdown-menu {
+    position: absolute;
+    background-color: #f90;
+  }
+  .dropdown-item {
     display: block;
     margin: -8px;
     width: 100%;
@@ -123,8 +179,19 @@ body{
     white-space: nowrap;
     background-color: #f90;
     border: 0;
-}
-.navbar-expand-lg .navbar-nav .dropdown-menu:hover {
-        background-color: #f90;
-    }
+  }
+  .navbar-expand-lg .navbar-nav .dropdown-menu:hover {
+    background-color: #f90;
+  }
+
+  .badge {
+    font-size: 0.75em;
+    padding: 0.25em 0.5em;
+    border-radius: 0.375rem;
+  }
+
+  .badge-danger {
+    background-color: #dc3545;
+    color: white;
+  }
 </style>

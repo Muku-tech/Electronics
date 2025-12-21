@@ -41,6 +41,10 @@
             <form action="" method="post">
                 {% csrf_token%}
                 {{form.as_p}}
+                <p>
+    
+</p>
+
                 <button class="btn btn-info">Place Order</button>
 
             </form>
@@ -49,7 +53,7 @@
 
 </div>
 </body>
-<style>
+<!-- <style>
   a{
     color: darkmagenta;
   }
@@ -64,6 +68,13 @@
   background-color: #131313;
   border: 1px solid #131313;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
 }
 
 .row {
@@ -115,5 +126,146 @@ input[type="text"], input[type="email"], input[type="password"] {
   margin-bottom: 20px;
   border: 1px solid #ccc;
   border-radius: 5px;
+</style> -->
+<style>
+/* ===== Page Background ===== */
+body {
+    background: linear-gradient(135deg, #020617, #0f172a);
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    color: #e5e7eb;
+}
+
+/* ===== Container ===== */
+.container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+/* ===== Layout ===== */
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+}
+
+/* ===== Card Style ===== */
+.col-md-6 {
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(12px);
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+}
+
+/* ===== Headings ===== */
+h3 {
+    color: #facc15;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+/* ===== Update Cart Link ===== */
+a {
+    color: #93c5fd;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+a:hover {
+    color: #60a5fa;
+}
+
+/* ===== Table ===== */
+.table {
+    width: 100%;
+    margin-top: 15px;
+    border-collapse: collapse;
+    color: #e5e7eb;
+}
+
+.table thead {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.table th,
+.table td {
+    padding: 12px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    text-align: center;
+}
+
+.table th {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #93c5fd;
+}
+
+/* ===== Total Row ===== */
+.text-right {
+    text-align: right;
+    font-weight: 700;
+    color: #facc15;
+}
+
+/* ===== Form ===== */
+form {
+    margin-top: 20px;
+}
+
+label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: #e5e7eb;
+}
+
+input,
+select,
+textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 18px;
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    color: #ffffff;
+    outline: none;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: #facc15;
+}
+
+/* ===== Place Order Button ===== */
+.btn-info {
+    width: 100%;
+    padding: 14px;
+    font-size: 1rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, #22c55e, #16a34a);
+    border: none;
+    border-radius: 50px;
+    color: #ffffff;
+    transition: all 0.3s ease;
+}
+
+.btn-info:hover {
+    background: linear-gradient(135deg, #16a34a, #15803d);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(34, 197, 94, 0.4);
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+    .row {
+        flex-direction: column;
+    }
+}
 </style>
+
 {%endblock%}

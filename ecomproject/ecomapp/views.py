@@ -1,10 +1,12 @@
+from django.http import JsonResponse
 from django.views.generic import View,TemplateView, CreateView,FormView,DetailView,ListView
 from django.contrib.auth import authenticate, login, logout
+import requests
 from .forms import CheckoutForm,CustomerRegistrationForm, CustomerLoginForm
 from django.shortcuts import render,redirect
 from django.core.paginator import Paginator
 from django.db.models import Q
-from django.urls import reverse_lazy
+from django.urls import reverse, reverse_lazy
 from .models import *
 
 class EcomMixin(object):
@@ -12,7 +14,7 @@ class EcomMixin(object):
         cart_id = request.session.get("cart_id")
         if cart_id:
             cart_obj = Cart.objects.get(id=cart_id)
-            if request.user.is_authenticated and request.user.customer:
+            if request.user.is_authenticated and Customer.objects.filter(user=request.user).exists():
                 cart_obj.customer = request.user.customer
                 cart_obj.save()
         return super().dispatch(request, *args, **kwargs)
@@ -24,7 +26,7 @@ class HomeView(EcomMixin,TemplateView):
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['myname'] = "Dipak Niroula"
+        context['myname'] = "Mukunda"
         all_products = Product.objects.all().order_by("-id")
         paginator = Paginator(all_products, 12)
         page_number = self.request.GET.get('page')
@@ -55,10 +57,10 @@ class ProductDetailView(EcomMixin,TemplateView):
 
 
 class AddToCartView(EcomMixin,TemplateView):
-      template_name="addtocart.html" 
+      template_name="addtocart.html"
 
       def dispatch(self, request, *args, **kwargs):
-        if request.user.is_authenticated and request.user.customer:
+        if request.user.is_authenticated and Customer.objects.filter(user=request.user).exists():
             pass
         else:
             return redirect("/login/?next=/checkout/")
@@ -183,9 +185,57 @@ class CheckoutView(EcomMixin,CreateView):
                form.instance.total=cart_obj.total
                form.instance.order_status="Order Received"
                del self.request.session['cart_id']
+               pm = form.cleaned_data.get("payment_method")
+               order = form.save()
+               if pm == "Khalti":
+                return redirect(reverse("ecomapp:khaltirequest") + "?o_id="+str(order.id))
+
           else:
                return redirect("ecomapp:home")     
           return super().form_valid(form)
+     
+
+class KhaltiRequestView(View):
+    def get(self, request, *args, **kwargs):
+        o_id = request.GET.get("o_id")
+        order = Order.objects.get(id=o_id)
+        context = {
+            "order": order
+        }
+        return render(request, "khaltirequest.html", context)
+
+
+class KhaltiVerifyView(View):
+    def get(self, request, *args, **kwargs):
+        token = request.GET.get("token")
+        amount = request.GET.get("amount")
+        o_id = request.GET.get("order_id")
+        print(token, amount, o_id)
+
+        url = "https://khalti.com/api/v2/payment/verify/"
+        payload = {
+            "token": token,
+            "amount": amount
+        }
+        headers = {
+            "Authorization": "Key test_secret_key_f59e8b7d18b4499ca40f68195a846e9b"
+        }
+
+        order_obj = Order.objects.get(id=o_id)
+
+        response = requests.post(url, payload, headers=headers)
+        resp_dict = response.json()
+        if resp_dict.get("idx"):
+            success = True
+            order_obj.payment_completed = True
+            order_obj.save()
+        else:
+            success = False
+        data = {
+            "success": success
+        }
+        return JsonResponse(data)
+
      
 
 
@@ -261,12 +311,12 @@ class CustomerProfileView(TemplateView):
 
 
      def get_context_data(self,**kwargs):
-          context=super().get_context_data(**kwargs)   
-          customer=self.request.user.customer
-          context['customer']=customer
-          orders=Order.objects.filter(cart__customer=customer).order_by("-id")
-          context["orders"]=orders
-
+          context=super().get_context_data(**kwargs)
+          if Customer.objects.filter(user=self.request.user).exists():
+               customer=self.request.user.customer
+               context['customer']=customer
+               orders=Order.objects.filter(cart__customer=customer).order_by("-id")
+               context["orders"]=orders
           return context
      
 class CustomerOrderDetailView(DetailView):
@@ -277,7 +327,7 @@ class CustomerOrderDetailView(DetailView):
         if request.user.is_authenticated and Customer.objects.filter(user=request.user).exists():
             order_id = self.kwargs["pk"]
             order = Order.objects.get(id=order_id)
-            if request.user.customer!=order.cart.customer:
+            if request.user.customer != order.cart.customer:
                  return redirect('ecomapp:customerprofile')
         else:
             return redirect("/login/?next=/profile/")

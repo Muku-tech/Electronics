@@ -1,0 +1,121 @@
+{% extends 'base.html' %}
+
+{% block title %}Khalti Payment{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card payment-card">
+        <div class="card-body text-center">
+          <h3 class="card-title">Payment Details</h3>
+          <p class="order-amount">Your order amount is Rs. {{ order.total }}</p>
+          <button id="payment-button" class="btn btn-primary btn-lg payment-btn">
+            Pay with Khalti
+          </button>
+          <br /><br />
+          <a href="/" class="btn btn-secondary">Go to Home page</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Khalti Checkout Script -->
+<script src="https://unpkg.com/khalti-checkout-web@latest/dist/khalti-checkout.iffe.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+  var config = {
+    publicKey: "pk_test_5f0d7b0d8f4a3c001f8e8d9a",
+    productIdentity: "order_{{ order.id }}",
+    productName: "order_{{ order.id }}",
+    productUrl: "http://localhost:8000",
+    paymentPreference: [
+      "MOBILE_BANKING",
+      "KHALTI",
+      "EBANKING",
+      "CONNECT_IPS",
+      "SCT",
+    ],
+    eventHandler: {
+      onSuccess(payload) {
+        axios.get("/khalti-verify/", {
+          params: {
+            token: payload.token,
+            amount: payload.amount,
+            order_id: "{{ order.id }}"
+          }
+        }).then(function(resp) {
+          if (resp.data.success === true) {
+            alert("Thanks. Payment Completed Successfully");
+            location.href = "/";
+          } else {
+            alert("Sorry. Error occurred");
+            location.href = "{{ request.build_absolute_uri }}";
+          }
+        });
+      },
+      onError(error) {
+        console.log(error);
+      },
+      onClose() {
+        console.log('widget is closing');
+      }
+    }
+  };
+
+  var checkout = new KhaltiCheckout(config);
+  var btn = document.getElementById("payment-button");
+  btn.onclick = function() {
+    // minimum transaction amount must be 10, i.e 1000 in paisa.
+    checkout.show({ amount: {{ order.total }} * 100 });
+  }
+</script>
+
+<!-- Styles -->
+<style>
+  .payment-card {
+    background-color: #131313;
+    border: 1px solid #333;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .card-title {
+    color: mediumaquamarine;
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+
+  .order-amount {
+    color: #fffc;
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+  }
+
+  .payment-btn {
+    background-color: orangered;
+    border-color: orangered;
+    font-size: 1.2rem;
+    padding: 12px 30px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+
+  .payment-btn:hover {
+    background-color: #ff4500;
+    border-color: #ff4500;
+  }
+
+  .btn-secondary {
+    background-color: #6c757d;
+    border-color: #6c757d;
+    color: #fff;
+  }
+
+  .btn-secondary:hover {
+    background-color: #5a6268;
+    border-color: #545b62;
+  }
+</style>
+{% endblock %}

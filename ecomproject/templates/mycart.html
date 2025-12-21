@@ -53,7 +53,7 @@
     </div>
 </div>
 </body>
-<style>
+<!-- <style>
     body{
         background-color: #131313;
     }
@@ -104,5 +104,173 @@ h4{
 a{
   color: rosybrown;
 }
+</style> -->
+<style>
+/* ===== Page Background ===== */
+body {
+    background: linear-gradient(135deg, #0f172a, #020617);
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    color: #e5e7eb;
+}
+
+/* ===== Container ===== */
+.container {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+}
+
+/* ===== Cart Card ===== */
+.col-md-8 {
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(10px);
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+}
+
+/* ===== Heading ===== */
+h4 {
+    color: #facc15;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+/* ===== Table ===== */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    color: #e5e7eb;
+    margin-top: 15px;
+}
+
+.table thead {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.table th,
+.table td {
+    padding: 14px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    text-align: center;
+}
+
+.table th {
+    color: #93c5fd;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.table td {
+    font-size: 0.95rem;
+}
+
+/* ===== Action Buttons ===== */
+.btn {
+    border-radius: 50px;
+    padding: 6px 12px;
+    font-size: 0.85rem;
+    transition: all 0.3s ease;
+}
+
+/* Increase */
+.btn-primary {
+    background: #22c55e;
+    border: none;
+}
+
+.btn-primary:hover {
+    background: #16a34a;
+    transform: translateY(-1px);
+}
+
+/* Decrease */
+.btn-warning {
+    background: #facc15;
+    border: none;
+    color: #000;
+}
+
+.btn-warning:hover {
+    background: #eab308;
+    transform: translateY(-1px);
+}
+
+/* Remove */
+.btn-danger {
+    background: #ef4444;
+    border: none;
+}
+
+.btn-danger:hover {
+    background: #dc2626;
+    transform: translateY(-1px);
+}
+
+/* ===== Total Row ===== */
+th.text-right {
+    text-align: right;
+    font-size: 1rem;
+    color: #facc15;
+}
+
+tr:last-child th {
+    border-bottom: none;
+}
+
+/* ===== Links ===== */
+a {
+    color: #93c5fd;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+a:hover {
+    color: #60a5fa;
+}
+
+/* ===== Checkout Button ===== */
+.btn-info {
+    width: 100%;
+    padding: 14px;
+    font-size: 1rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, #f97316, #ea580c);
+    border: none;
+    color: #ffffff;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+}
+
+.btn-info:hover {
+    background: linear-gradient(135deg, #ea580c, #c2410c);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(249, 115, 22, 0.4);
+}
+
+/* ===== Empty Cart Link ===== */
+th a {
+    color: #f87171;
+    font-weight: 600;
+}
+
+th a:hover {
+    color: #ef4444;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+    .col-md-8 {
+        padding: 20px;
+    }
+
+    .table th,
+    .table td {
+        padding: 10px;
+        font-size: 0.85rem;
+    }
+}
 </style>
+
 {%endblock%}
